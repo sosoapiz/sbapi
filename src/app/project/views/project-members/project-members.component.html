@@ -1,0 +1,101 @@
+<h5 style="margin-bottom: 8px;">项目成员</h5>
+  
+<div nz-row style="background: #ffffff; padding: 6px 24px; border-bottom: 1px solid #cccccc;">
+  <div nz-col nzSpan="12">
+    <form nz-form [nzLayout]="'inline'" [formGroup]="searchForm" (ngSubmit)="_submitForm()">
+      <div nz-form-item>
+        <div nz-form-control>
+          <nz-input formControlName="username" [nzPlaceHolder]="'使用用户名查找已存在的用户'" [nzSize]="'large'">
+            <ng-template #prefix>
+              <i class="anticon anticon-search"></i>
+            </ng-template>
+          </nz-input>
+        </div>
+      </div>
+      <button nz-button [nzType]="'primary'" [nzSize]="'large'">搜索</button>
+    </form>
+  </div>
+  <div nz-col nzSpan="12">
+    <div style="text-align: right;">
+      <button nz-button nzType="primary" nzSize="large" (click)="addExpanded=!addExpanded"><span>添加成员</span> <i class="anticon anticon-{{addExpanded?'up':'down'}}"></i></button>
+      <button nz-button nzSize="large"><span>导入成员</span></button>
+    </div>
+  </div>
+</div>
+
+<nz-card [nzBordered]="false" [nzNoHovering]="true" *ngIf="addExpanded" style="background: #fcfcfc;">
+  <ng-template #body>
+    <form nz-form [formGroup]="addForm">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="6">
+          <label for="username">用户</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="16" [nzHasFeedback]="'true'" [nzValidateStatus]="success">
+          <nz-select
+            formControlName="username"
+            nzKeepUnListOptions
+            [nzMode]="'multiple'"
+            [nzPlaceHolder]="'请选择关键字'"
+            (nzSearchChange)="searchChange($event)"
+            [nzNotFoundContent]="'无法找到'">
+            <nz-option
+              *ngFor="let option of searchOptions"
+              [nzLabel]="option[0]"
+              [nzValue]="option[0]">
+            </nz-option>
+          </nz-select>
+          <div nz-form-explain>搜索已存在的用户或使用电子邮箱地址邀请新用户。</div>
+        </div>
+      </div>
+
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSpan]="6">
+          <label for="role">项目访问</label>
+        </div>
+        <div nz-form-control nz-col [nzSpan]="16" [nzHasFeedback]="'true'" [nzValidateStatus]="success">
+          <nz-select formControlName="role" [nzAllowClear]="false" >
+              <nz-option nzLabel="访客" nzValue="GUST"></nz-option>
+              <nz-option nzLabel="报告者" nzValue="REPORTER"></nz-option>
+              <nz-option nzLabel="开发人员" nzValue="DEVELOPER"></nz-option>
+              <nz-option nzLabel="主程序员" nzValue="MAIN_DEVELOPER"></nz-option>
+          </nz-select>
+          <div nz-form-explain>关于角色权限的更多内容请参阅 <a>这里</a></div>
+        </div>
+      </div>
+
+      <div nz-row>
+        <div nz-col [nzSpan]="16" [nzOffset]="6">
+          <button nz-button nzType="primary">
+              <span>添加用户到项目</span>
+          </button>
+          
+        </div>
+      </div>
+    </form>
+
+  </ng-template>
+</nz-card>
+
+<nz-card [nzBordered]="false" [nzNoHovering]="true">
+  <ng-template #body>
+    <div style="margin-bottom: 12px;">可以访问此项目的用户全部显示在下面。 关于项目权限的更多内容请参阅 <a>这里</a></div>
+
+    <div style="border: 1px solid #eeeeee;">
+      <nz-collapseset [nzBordered]="false">
+        <nz-collapse *ngFor="let panel of panels" [nzTitle]="panel.name" [nzActive]="panel.active">
+          <nz-select style="width: 120px;" nzPlaceHolder="选择角色" [nzAllowClear]="false" >
+            <nz-option nzLabel="访客"></nz-option>
+            <nz-option nzLabel="报告者" nzValue="REPORTER"></nz-option>
+            <nz-option nzLabel="开发人员" nzValue="DEVELOPER"></nz-option>
+            <nz-option nzLabel="主程序员" nzValue="MAIN_DEVELOPER"></nz-option>
+          </nz-select>
+          <button nz-button nzType="primary">
+            <span>保存</span>
+          </button>
+        </nz-collapse>
+      </nz-collapseset>
+    </div>
+  </ng-template>
+</nz-card>
+
+

@@ -2,7 +2,7 @@ import { MainLayoutComponent } from './../shared/layout/main-layout/main-layout.
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DocumentListComponent } from './document-list/document-list.component';
+import { DocumentListComponent } from './views/document-list/document-list.component';
 
 const routes: Routes = [
     {

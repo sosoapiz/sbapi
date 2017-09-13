@@ -1,0 +1,56 @@
+<!-- 'codeGroup' | 'code' | 'interGroup' | 'interGroupSub' | 'interGroupModule' | 'inter' -->
+<ng-container *ngIf="type=='codeGroup'">
+  <div>
+      <i class="anticon anticon-right" *ngIf="!expanded" (click)="toggleExpanded()"></i>
+      <i class="anticon anticon-down" *ngIf="expanded" (click)="toggleExpanded()"></i>
+      <i class="anticon anticon-exclamation-circle"></i>
+      <span>{{label}}</span>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="type=='code'">
+  <div>
+      <i class="anticon anticon-file-text"></i>
+      <span>{{label}}</span>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="type=='interGroup'">
+  <div>
+      <i class="anticon anticon-right" *ngIf="!expanded" (click)="toggleExpanded()"></i>
+      <i class="anticon anticon-down" *ngIf="expanded" (click)="toggleExpanded()"></i>
+      <i class="anticon anticon-layout"></i>
+      <span>{{label}}</span>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="type=='interGroupSub'">
+  <div>
+      <i class="anticon anticon-right" *ngIf="!expanded" (click)="toggleExpanded()"></i>
+      <i class="anticon anticon-down" *ngIf="expanded" (click)="toggleExpanded()"></i>
+      <i class="anticon anticon-calendar" *ngIf="label!='未分组'"></i>
+      <i class="anticon anticon-frown-o" *ngIf="label=='未分组'"></i>
+      <span>{{label}}</span>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="type=='interGroupModule'">
+  <div>
+      <i class="anticon anticon-right" *ngIf="!expanded" (click)="toggleExpanded()"></i>
+      <i class="anticon anticon-down" *ngIf="expanded" (click)="toggleExpanded()"></i>
+      <i class="anticon anticon-folder" *ngIf="!expanded"></i>
+      <i class="anticon anticon-folder-open" *ngIf="expanded"></i>
+      <span>{{label}}</span>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="type=='inter'">
+  <div>
+      <i class="anticon anticon-file-text"></i>
+      <span>{{label}}</span>
+  </div>
+</ng-container>
+
+<div style="padding-left: 16px;" [hidden]="!expanded">
+  <ng-content></ng-content>
+</div>

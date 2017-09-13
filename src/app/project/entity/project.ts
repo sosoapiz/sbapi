@@ -4,4 +4,6 @@ export class Project {
     shortName?: string;
     status?: 'ON' | 'OFF';
     description?: string;
+
+    document?: {id: number};
 }

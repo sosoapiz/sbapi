@@ -1,0 +1,31 @@
+<nz-layout>
+  <nz-sider [nzWidth]="300">
+    <nz-card [nzBordered]="false" [nzNoHovering]="true" [nzLoading]="false">
+      <ng-template #title>接口管理</ng-template>
+      <ng-template #extra>
+        <a>
+          <i class="anticon anticon-setting" style="font-size: 18px;"></i>
+        </a>
+        <nz-dropdown [nzTrigger]="'click'" nzPlacement="bottomCenter">
+          <a href class="ant-dropdown-link" nz-dropdown>
+            <i class="anticon anticon-plus-circle" style="font-size: 18px;"></i>
+          </a>
+          <ul nz-menu>
+            <li nz-menu-item>新增返回码</li>
+            <li nz-menu-item>新增模块</li>
+            <li nz-menu-item>新增接口</li>
+          </ul>
+        </nz-dropdown>
+      </ng-template>
+      <ng-template #body>
+        <nz-input nzType="search" nzPlaceHolder="接口名称 / 请求URL / 标签"></nz-input>
+        <div style="margin-top: 16px;"></div>
+        <sb-inter-outline></sb-inter-outline>
+      </ng-template>
+    </nz-card>
+  </nz-sider>
+
+  <nz-content>
+
+  </nz-content>
+</nz-layout>
