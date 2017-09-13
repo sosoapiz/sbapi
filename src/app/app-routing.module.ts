@@ -11,7 +11,8 @@ const routes: Routes = [
   },
   {
     path: '', children: [
-      { path: 'project', loadChildren: 'app/project/project.module#ProjectModule' }
+      { path: 'project', loadChildren: 'app/project/project.module#ProjectModule' },
+      { path: 'document', loadChildren: 'app/document/document.module#DocumentModule' },
     ]
   }
 ];

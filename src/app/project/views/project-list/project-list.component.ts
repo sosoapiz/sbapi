@@ -16,7 +16,7 @@ export class ProjectListComponent implements OnInit {
   controlArray = [];
   isCollapse = true;
   data = [
-    { name: '企慕课堂-部署版', shortName: 'parim-spark', roleName: '拥有者', createDate: '2018-12-23', status: '开启' }
+    {id: 1, name: '企慕课堂-部署版', shortName: 'parim-spark', roleName: '拥有者', createDate: '2018-12-23', status: '开启' }
   ];
 
   toggleCollapse() {

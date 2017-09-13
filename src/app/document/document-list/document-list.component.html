@@ -1,0 +1,57 @@
+<div nz-row style="margin-bottom: 8px; margin-top: 16px;">
+  <div nz-col [nzSpan]="12">
+    <h5 style="margin-top: 4px;">API 文档列表</h5>
+  </div>
+  <div nz-col [nzSpan]="12" style="text-align: right;">
+    <!-- <button nz-button><i class="anticon anticon-plus"></i> 新增</button>
+    <button nz-button><i class="anticon anticon-cloud-upload"></i> 导入</button> -->
+  </div>
+</div>
+<div class="search-result-list1" style="background: #ffffff;">
+  <nz-table #nzTable [nzDataSource]="data" [nzIsPagination]="false">
+    <thead nz-thead>
+      <tr>
+        <th nz-th><span>文档标题</span></th>
+        <th nz-th><span>版本</span></th>
+        <th nz-th><span>项目名称</span></th>
+        <th nz-th><span>项目短名称</span></th>
+        <th nz-th><span>创建时间</span></th>
+        <th nz-th style="text-align: right;"><span>操作</span></th>
+      </tr>
+    </thead>
+    <tbody nz-tbody>
+      <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+        <td nz-td>
+          <a><strong>{{data.title}}</strong></a>
+        </td>
+        <td nz-td>{{data.version}}</td>
+        <td nz-td>{{data.projectName}}</td>
+        <td nz-td>{{data.projectShortName}}</td>
+        <td nz-td>{{data.createDate}}</td>
+        <td nz-td style="text-align: right;">
+          <button nz-button nzSize="small" nzType="primary" [nzGhost]="true"><i class="anticon anticon-eye-o"></i> 预览</button>
+          <nz-dropdown nzPlacement="bottomRight">
+            <button nz-button nz-dropdown nzSize="small" nzType="primary" [nzGhost]="true"><i class="anticon anticon-cloud-download"></i><span>下载</span> <i class="anticon anticon-down"></i></button>
+            <ul nz-menu>
+              <li nz-menu-item>
+                <a>HTML</a>
+              </li>
+              <li nz-menu-item>
+                <a>Word</a>
+              </li>
+              <li nz-menu-item>
+                <a>PDF</a>
+              </li>
+              <li nz-menu-item>
+                <a>Swagger</a>
+              </li>
+              <li nz-menu-item>
+                <a>Postman</a>
+              </li>
+            </ul>
+          </nz-dropdown>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
