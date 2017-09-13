@@ -1,0 +1,40 @@
+<nz-row>
+  <nz-col nzSpan="1">
+    <i class="anticon trigger" [class.anticon-menu-fold]="!isCollapsed" [class.anticon-menu-unfold]="isCollapsed" (click)="isCollapsed=!isCollapsed"></i>
+  </nz-col>
+  <nz-col nzSpan="13">
+    <ul nz-menu [nzMode]="'horizontal'" style="line-height: 64px;">
+      <li nz-submenu>
+        <span title>控制台 <i class="anticon anticon-down"></i></span>
+        <ul>
+            <li nz-menu-item><span><i class="anticon anticon-home"></i><span class="nav-text">首页</span></span></li>
+            <li nz-menu-item><span><i class="anticon anticon-appstore-o"></i><span class="nav-text">项目管理</span></span></li>
+            <li nz-menu-item><span><i class="anticon anticon-api"></i><span class="nav-text">API 文档管理</span></span></li>
+            <li nz-menu-item><span><i class="anticon anticon-dot-chart"></i><span class="nav-text">网站监控</span></span></li>
+            <li nz-menu-item><span><i class="anticon anticon-user"></i><span class="nav-text">个人中心</span></span></li>
+            <li nz-menu-item><span><i class="anticon anticon-message"></i><span class="nav-text">意见反馈</span></span></li>
+        </ul>
+      </li>
+      <li nz-menu-item>快速上手</li>
+      <li nz-menu-item>专业版下载</li>
+    </ul>
+  </nz-col>
+  <nz-col nzSpan="10">
+    <ul nz-menu [nzMode]="'horizontal'" style="line-height: 64px; float: right;">
+      <li nz-menu-item>
+        <nz-badge [nzCount]="5">
+          <ng-template #content>
+            <a class=""><i class="anticon anticon-bell" style="font-size: 18px;"></i></a>
+          </ng-template>
+        </nz-badge>
+      </li>
+      <li nz-submenu>
+        <span title><!-- <nz-avatar nzIcon="user"></nz-avatar> --> YinTao <i class="anticon anticon-down"></i></span>
+        <ul>
+          <li nz-menu-item><span><i class="anticon anticon-user"></i><span class="nav-text">个人中心</span></span></li>
+          <li nz-menu-item><span><i class="anticon anticon-logout"></i><span class="nav-text">个人中心</span></span></li>
+        </ul>
+      </li>
+    </ul>
+  </nz-col>
+</nz-row>
