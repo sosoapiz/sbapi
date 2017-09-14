@@ -1,0 +1,10 @@
+
+<ul nz-menu [nzMode]="'horizontal'">
+  <li nz-menu-item [routerLink]="['docInfo']" routerLinkActive="ant-menu-item-selected"><i class="anticon anticon-setting"></i> 文档设置</li>
+  <li nz-menu-item [routerLink]="['baseUrl']" routerLinkActive="ant-menu-item-selected"><i class="anticon anticon-usb"></i> 请求基路径</li>
+  <li nz-menu-item [routerLink]="['commonParam']" routerLinkActive="ant-menu-item-selected"><i class="anticon anticon-shop"></i> 公共请求参数</li>
+</ul>
+
+<div style="background: #ffffff; padding: 24px;">
+  <router-outlet></router-outlet>
+</div>

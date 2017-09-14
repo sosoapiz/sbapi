@@ -1,0 +1,16 @@
+<nz-card [nzBordered]="false" [nzNoHovering]="true" [nzLoading]="false">
+    <ng-template #title>模块信息</ng-template>
+    <ng-template #extra>
+      <!-- <button nz-button [nzType]="'primary'" [nzSize]="'small'">
+          <span>保存</span>
+      </button>
+      <button nz-button [nzType]="'default'" [nzSize]="'small'">
+          <span>取消</span>
+      </button> -->
+    </ng-template>
+    <ng-template #body>
+        <sb-module-form [module]="module"></sb-module-form>
+    </ng-template>
+</nz-card>
+
+
