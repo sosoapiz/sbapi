@@ -1,3 +1,19 @@
-<p>
-  inter-add works!
-</p>
+<nz-card [nzBordered]="false" [nzNoHovering]="true" [nzLoading]="false">
+    <ng-template #title>接口信息</ng-template>
+    <!-- <ng-template #extra></ng-template> -->
+    <ng-template #body>
+        <h3>基本信息</h3>
+        <sb-inter-form></sb-inter-form>
+        
+        <div style="margin-top: 32px;"></div>
+        <h3>请求参数</h3>
+        <sb-inter-request></sb-inter-request>
+
+        <div style="margin-top: 32px;"></div>
+        <h3>接口响应</h3>
+        <sb-inter-response></sb-inter-response>
+
+    </ng-template>
+</nz-card>
+
+

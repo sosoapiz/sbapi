@@ -20,6 +20,8 @@ import { CodeEditComponent } from './views/code-edit/code-edit.component';
 import { CodeAddComponent } from './views/code-add/code-add.component';
 import { InterAddComponent } from './views/inter-add/inter-add.component';
 import { InterEditComponent } from './views/inter-edit/inter-edit.component';
+import { InterRequestComponent } from './partial/inter-request/inter-request.component';
+import { InterResponseComponent } from './partial/inter-response/inter-response.component';
 
 @NgModule({
   imports: [
@@ -27,7 +29,7 @@ import { InterEditComponent } from './views/inter-edit/inter-edit.component';
     InterRoutingModule
   ],
   declarations: [InterLayoutComponent, InterOutlineComponent, InterOutlineItemComponent,
-    DocSettingsComponent, DocInfoComponent, BaseUrlComponent, CommonParamComponent, ModuleFormComponent, CodeFormComponent, InterFormComponent, ModuleAddComponent, ModuleEditComponent, CodeEditComponent, CodeAddComponent, InterAddComponent, InterEditComponent],
+    DocSettingsComponent, DocInfoComponent, BaseUrlComponent, CommonParamComponent, ModuleFormComponent, CodeFormComponent, InterFormComponent, ModuleAddComponent, ModuleEditComponent, CodeEditComponent, CodeAddComponent, InterAddComponent, InterEditComponent, InterRequestComponent, InterResponseComponent],
   providers: [DocumentDetailResolver, DocumentService]
 })
 export class InterModule { }

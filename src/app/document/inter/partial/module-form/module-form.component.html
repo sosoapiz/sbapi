@@ -1,24 +1,24 @@
 <form nz-form [formGroup]="moduleForm" (ngSubmit)="_submitForm($event, moduleForm.value)" [nzLayout]="'horizontal'">
   <div nz-form-item nz-row>
-      <div nz-form-label nz-col [nzSpan]="6">
+      <div nz-form-label nz-col [nzSpan]="4">
         <label for="name" nz-form-item-required>名称</label>
       </div>
-      <div nz-form-control nz-col [nzSpan]="14" [nzHasFeedback]="'true'" [nzValidateStatus]="getFormControl('name')">
+      <div nz-form-control nz-col [nzSpan]="16" [nzHasFeedback]="'true'" [nzValidateStatus]="getFormControl('name')">
         <nz-input formControlName="name" nzPlaceHolder="请输入模块名称" [nzSize]="'large'"></nz-input>
       </div>
   </div>
 
   <div nz-form-item nz-row>
-    <div nz-form-label nz-col [nzSpan]="6">
+    <div nz-form-label nz-col [nzSpan]="4">
       <label for="description">描述</label>
     </div>
-    <div nz-form-control nz-col [nzSpan]="14" nzHasFeedback [nzValidateStatus]="getFormControl('description')">
+    <div nz-form-control nz-col [nzSpan]="16" nzHasFeedback [nzValidateStatus]="getFormControl('description')">
       <nz-input formControlName="description" nzPlaceHolder="请输入模块描述" nzType="textarea" nzRows="4" [nzAutosize]="autosize"></nz-input>
     </div>
   </div>
 
   <div nz-row>
-    <div nz-col [nzSpan]="14" [nzOffset]="6">
+    <div nz-col [nzSpan]="16" [nzOffset]="4">
       <button nz-button [nzType]="'primary'" [nzSize]="'large'">
           <span>保存</span>
       </button>
