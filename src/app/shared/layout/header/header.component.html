@@ -29,10 +29,10 @@
         </nz-badge>
       </li>
       <li nz-submenu>
-        <span title><!-- <nz-avatar nzIcon="user"></nz-avatar> --> YinTao <i class="anticon anticon-down"></i></span>
+        <span title><!-- <nz-avatar nzIcon="user"></nz-avatar> --> {{userInfo.nickName}} <i class="anticon anticon-down"></i></span>
         <ul>
           <li nz-menu-item><span><i class="anticon anticon-user"></i><span class="nav-text">个人中心</span></span></li>
-          <li nz-menu-item><span><i class="anticon anticon-logout"></i><span class="nav-text">退出</span></span></li>
+          <li nz-menu-item (click)="logout()"><span><i class="anticon anticon-logout"></i><span class="nav-text">退出</span></span></li>
         </ul>
       </li>
     </ul>

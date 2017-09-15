@@ -34,7 +34,13 @@ export class AuthService {
         return !!this.userInfo;
     }
 
-    state() {
-        // TODO: 与服务器通讯，以确认登录状态
+    state(): Observable<boolean> {
+        let url = '/api/state';
+        return this.httpAdaptor.get(url).map((userInfo) => {
+            this.userInfo = userInfo;
+            return true;
+        }).catch((err) => {
+            return Observable.of(false);
+        });
     }
 }

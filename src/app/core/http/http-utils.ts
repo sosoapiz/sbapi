@@ -27,12 +27,12 @@ export class HttpUtils {
             } catch (e) {
                 body = error.text || '';
             }
-            let err = body.message || body.error || JSON.stringify(body);
+            let err = body.errorMsg || body.message || body.error || JSON.stringify(body);
             if (!err || err === 'No message available') {
                 err = body.error || JSON.stringify(body);
                 errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
             } else {
-                errMsg = body.message;
+                errMsg = body.errorMsg || body.message || body.error;
             }
         } else {
             errMsg = error.message ? error.message : error.toString();

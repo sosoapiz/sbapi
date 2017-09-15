@@ -30,7 +30,7 @@
         <div nz-form-label nz-col [nzSpan]="6">
           <label for="username">用户</label>
         </div>
-        <div nz-form-control nz-col [nzSpan]="16" [nzHasFeedback]="'true'" [nzValidateStatus]="success">
+        <div nz-form-control nz-col [nzSpan]="14" [nzValidateStatus]="success">
           <nz-select
             formControlName="username"
             nzKeepUnListOptions
@@ -52,7 +52,7 @@
         <div nz-form-label nz-col [nzSpan]="6">
           <label for="role">项目访问</label>
         </div>
-        <div nz-form-control nz-col [nzSpan]="16" [nzHasFeedback]="'true'" [nzValidateStatus]="success">
+        <div nz-form-control nz-col [nzSpan]="14" [nzValidateStatus]="success">
           <nz-select formControlName="role" [nzAllowClear]="false" >
               <nz-option nzLabel="访客" nzValue="GUST"></nz-option>
               <nz-option nzLabel="报告者" nzValue="REPORTER"></nz-option>

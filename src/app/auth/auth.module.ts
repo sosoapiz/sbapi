@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { AuthGuard } from './service/auth-guard.service';
 
 @NgModule({
   imports: [
@@ -10,6 +11,6 @@ import { SharedModule } from '../shared/shared.module';
     AuthRoutingModule,
   ],
   declarations: [LoginComponent],
-  providers: [AuthService]
+  providers: [AuthService, AuthGuard]
 })
 export class AuthModule { }
