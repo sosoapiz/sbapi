@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -7,22 +9,38 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  validateForm: FormGroup;
+  loginForm: FormGroup;
+  err;
 
-  _submitForm() {
-    for (const i in this.validateForm.controls) {
-      this.validateForm.controls[ i ].markAsDirty();
+  _submitForm(event, value) {
+    for (const i in this.loginForm.controls) {
+      this.loginForm.controls[ i ].markAsDirty();
     }
+
+    // console.log(value['username'], value['password']);
+    this.authService.login(value['username'], value['password']).subscribe(
+      ok => {
+        this.gotoHome();
+      },
+      err => {
+        this.err = err;
+      }
+    );
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.validateForm = this.fb.group({
+    this.loginForm = this.fb.group({
       username: [ null, [ Validators.required ] ],
       password: [ null, [ Validators.required ] ],
       remember: [ true ],
     });
+  }
+
+  gotoHome() {
+    // TODO: 跳转到登录前页面
+    this.router.navigate(['/']);
   }
 
 }

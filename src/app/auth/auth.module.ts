@@ -1,3 +1,4 @@
+import { AuthService } from './service/auth.service';
 import { NgModule } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { AuthRoutingModule } from './auth-routing.module';
@@ -8,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     AuthRoutingModule,
   ],
-  declarations: [LoginComponent]
+  declarations: [LoginComponent],
+  providers: [AuthService]
 })
 export class AuthModule { }
