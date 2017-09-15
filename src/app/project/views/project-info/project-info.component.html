@@ -14,11 +14,11 @@
       
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
-          <label for="shortName" nz-form-item-required>短名称</label>
+          <label for="code" nz-form-item-required>短名称</label>
         </div>
-        <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback [nzValidateStatus]="getFormControl('shortName')">
-          <nz-input [nzSize]="'large'" formControlName="shortName" [nzId]="'shortName'"></nz-input>
-          <div nz-form-explain *ngIf="getFormControl('shortName').dirty&&getFormControl('shortName').hasError('required')">请输入项目短名称</div>
+        <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback [nzValidateStatus]="getFormControl('code')">
+          <nz-input [nzSize]="'large'" formControlName="code" [nzId]="'code'"></nz-input>
+          <div nz-form-explain *ngIf="getFormControl('code').dirty&&getFormControl('code').hasError('required')">请输入项目短名称</div>
         </div>
       </div>
 

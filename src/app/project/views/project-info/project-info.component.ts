@@ -36,7 +36,7 @@ export class ProjectInfoComponent implements OnInit {
   initForm() {
     this.validateForm = this.fb.group({
       name              : [ this.project.name, [ Validators.required ] ],
-      shortName         : [ this.project.shortName, [ Validators.required ] ],
+      code              : [ this.project.code, [ Validators.required ] ],
       status            : [ this.project.status, null ],
       description       : [ this.project.description, null ],
     });

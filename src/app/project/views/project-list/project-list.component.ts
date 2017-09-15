@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from '../../service/project.service';
 import {
   FormBuilder,
   FormGroup,
@@ -16,7 +17,7 @@ export class ProjectListComponent implements OnInit {
   controlArray = [];
   isCollapse = true;
   data = [
-    {id: 1, name: '企慕课堂-部署版', shortName: 'parim-spark', roleName: '拥有者', createDate: '2018-12-23', status: '开启' }
+    // {id: 1, name: '企慕课堂-部署版', shortName: 'parim-spark', roleName: '拥有者', createDate: '2018-12-23', status: '开启' }
   ];
 
   toggleCollapse() {
@@ -30,7 +31,7 @@ export class ProjectListComponent implements OnInit {
     this.validateForm.reset();
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private projectService: ProjectService) {
   }
 
   ngOnInit() {
@@ -42,6 +43,15 @@ export class ProjectListComponent implements OnInit {
     this.controlArray.map((it: {index: string, control: any}) => {
       this.validateForm.addControl(it.index, it.control);
     });
+
+    this.loadData();
   }
 
+  loadData() {
+    this.projectService.getList().subscribe(
+      pager => {
+        this.data = pager.list;
+      }
+    );
+  }
 }
