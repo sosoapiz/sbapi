@@ -1,3 +1,6 @@
+import { DocumentDetailResolver } from './service/document-detail-resolver.service';
+import { DocumentService } from './service/document.service';
+import { ModuleService } from './service/module.service';
 import { DocumentRoutingModule } from './document-routing.module';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
@@ -9,6 +12,7 @@ import { DocumentListComponent } from './views/document-list/document-list.compo
     SharedModule,
     DocumentRoutingModule,
   ],
-  declarations: [DocumentListComponent]
+  declarations: [DocumentListComponent],
+  providers: [DocumentDetailResolver, DocumentService, ModuleService]
 })
 export class DocumentModule { }

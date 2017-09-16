@@ -1,0 +1,8 @@
+.outline-item {
+    
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(150, 150, 150, 0.3);
+    }
+}

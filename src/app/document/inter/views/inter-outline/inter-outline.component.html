@@ -3,4 +3,6 @@
 <sb-inter-outline-item type="interGroup" label="接口列表" [expanded]="true">
   <sb-inter-outline-item type="interGroupSub" label="所有接口"></sb-inter-outline-item>
   <sb-inter-outline-item type="interGroupSub" label="未分组"></sb-inter-outline-item>
+
+  <sb-inter-outline-item *ngFor="let m of modules" type="interGroupModule" [label]="m.name"></sb-inter-outline-item>
 </sb-inter-outline-item>

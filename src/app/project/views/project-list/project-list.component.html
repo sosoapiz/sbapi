@@ -28,8 +28,8 @@
     <h5 style="margin-top: 4px;"><!-- 根据业务分析，这里是我的项目列表 -->项目列表</h5>
   </div>
   <div nz-col [nzSpan]="12" style="text-align: right;">
-    <button nz-button><i class="anticon anticon-plus"></i> 新增</button>
-    <button nz-button><i class="anticon anticon-cloud-upload"></i> 导入</button>
+    <button nz-button (click)="openAdd()"><i class="anticon anticon-plus"></i> 新增</button>
+    <button nz-button (click)="openImport()"><i class="anticon anticon-cloud-upload"></i> 导入</button>
   </div>
 </div>
 <div class="search-result-list1" style="background: #ffffff;">
@@ -55,9 +55,13 @@
         <td nz-td>{{data.status == 'open' ? '开启' : '关闭'}}</td>
         <td nz-td style="text-align: right;">
           <button nz-button nzSize="small" nzType="primary" [nzGhost]="true" [routerLink]="['../', data.projId]"><i class="anticon anticon-info-circle"></i> 详情</button>
-          <button nz-button nzSize="small" nzType="primary" [nzGhost]="true"><i class="anticon anticon-frown-o"></i> 退出</button>
-          <button nz-button nzSize="small" nzType="primary" [nzGhost]="true"><i class="anticon anticon-copy"></i> 复制</button>
-          <button nz-button nzSize="small" nzType="danger" [nzGhost]="true"><i class="anticon anticon-delete"></i> 删除</button>
+          <!-- <button nz-button nzSize="small" nzType="primary" [nzGhost]="true"><i class="anticon anticon-frown-o"></i> 退出</button> -->
+          <nz-popconfirm [nzTitle]="'确定要复制这个项目吗？'" (nzOnConfirm)="copy(data.projId)">
+            <button nz-popconfirm nz-button nzSize="small" nzType="primary" [nzGhost]="true"><i class="anticon anticon-copy"></i> 复制</button>
+          </nz-popconfirm>
+          <nz-popconfirm [nzTitle]="'确定要删除这个项目吗？'" (nzOnConfirm)="delete(data.projId)">
+            <button nz-popconfirm nz-button nzSize="small" nzType="danger" [nzGhost]="true"><i class="anticon anticon-delete"></i> 删除</button>
+          </nz-popconfirm>
         </td>
       </tr>
     </tbody>

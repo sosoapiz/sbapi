@@ -1,0 +1,6 @@
+<nz-alert *ngIf="err" [nzType]="'error'" [nzShowIcon]="true" [nzCloseable]="true">
+    <div alert-body>{{err}}</div>
+</nz-alert>
+<div style="margin-top: 12px;"></div>
+
+<sb-project-form (save)="onSave($event)" (cancel)="onCancel($event)"></sb-project-form>

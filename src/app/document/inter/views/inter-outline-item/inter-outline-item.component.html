@@ -1,6 +1,6 @@
 <!-- 'codeGroup' | 'code' | 'interGroup' | 'interGroupSub' | 'interGroupModule' | 'inter' -->
 <ng-container *ngIf="type=='codeGroup'">
-  <div>
+  <div class="outline-item" (click)="toggleExpanded()">
       <i class="anticon anticon-right" *ngIf="!expanded" (click)="toggleExpanded()"></i>
       <i class="anticon anticon-down" *ngIf="expanded" (click)="toggleExpanded()"></i>
       <i class="anticon anticon-exclamation-circle"></i>
@@ -9,14 +9,14 @@
 </ng-container>
 
 <ng-container *ngIf="type=='code'">
-  <div>
+  <div class="outline-item">
       <i class="anticon anticon-file-text"></i>
       <span>{{label}}</span>
   </div>
 </ng-container>
 
 <ng-container *ngIf="type=='interGroup'">
-  <div>
+  <div class="outline-item" (click)="toggleExpanded()">
       <i class="anticon anticon-right" *ngIf="!expanded" (click)="toggleExpanded()"></i>
       <i class="anticon anticon-down" *ngIf="expanded" (click)="toggleExpanded()"></i>
       <i class="anticon anticon-layout"></i>
@@ -25,7 +25,7 @@
 </ng-container>
 
 <ng-container *ngIf="type=='interGroupSub'">
-  <div>
+  <div class="outline-item" (click)="toggleExpanded()">
       <i class="anticon anticon-right" *ngIf="!expanded" (click)="toggleExpanded()"></i>
       <i class="anticon anticon-down" *ngIf="expanded" (click)="toggleExpanded()"></i>
       <i class="anticon anticon-calendar" *ngIf="label!='未分组'"></i>
@@ -35,17 +35,20 @@
 </ng-container>
 
 <ng-container *ngIf="type=='interGroupModule'">
-  <div>
+  <div class="outline-item" (click)="toggleExpanded()">
       <i class="anticon anticon-right" *ngIf="!expanded" (click)="toggleExpanded()"></i>
       <i class="anticon anticon-down" *ngIf="expanded" (click)="toggleExpanded()"></i>
       <i class="anticon anticon-folder" *ngIf="!expanded"></i>
       <i class="anticon anticon-folder-open" *ngIf="expanded"></i>
       <span>{{label}}</span>
+      <span style="float: right;">
+        <a (click)="add($event)"><i class="anticon anticon-plus"></i></a>
+      </span>
   </div>
 </ng-container>
 
 <ng-container *ngIf="type=='inter'">
-  <div>
+  <div class="outline-item">
       <i class="anticon anticon-file-text"></i>
       <span>{{label}}</span>
   </div>

@@ -1,3 +1,4 @@
+import { ModuleService } from './../service/module.service';
 import { DocumentService } from './../service/document.service';
 import { DocumentDetailResolver } from './../service/document-detail-resolver.service';
 import { NgModule } from '@angular/core';
@@ -29,7 +30,10 @@ import { InterResponseComponent } from './partial/inter-response/inter-response.
     InterRoutingModule
   ],
   declarations: [InterLayoutComponent, InterOutlineComponent, InterOutlineItemComponent,
-    DocSettingsComponent, DocInfoComponent, BaseUrlComponent, CommonParamComponent, ModuleFormComponent, CodeFormComponent, InterFormComponent, ModuleAddComponent, ModuleEditComponent, CodeEditComponent, CodeAddComponent, InterAddComponent, InterEditComponent, InterRequestComponent, InterResponseComponent],
-  providers: [DocumentDetailResolver, DocumentService]
+    DocSettingsComponent, DocInfoComponent, BaseUrlComponent, CommonParamComponent,
+    ModuleFormComponent, CodeFormComponent, InterFormComponent, ModuleAddComponent,
+    ModuleEditComponent, CodeEditComponent, CodeAddComponent, InterAddComponent,
+    InterEditComponent, InterRequestComponent, InterResponseComponent],
+  providers: [DocumentDetailResolver, DocumentService, ModuleService]
 })
 export class InterModule { }

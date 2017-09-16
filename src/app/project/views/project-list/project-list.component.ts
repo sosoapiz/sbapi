@@ -1,3 +1,5 @@
+import { ProjectImportComponent } from './../project-import/project-import.component';
+import { ProjectAddComponent } from './../project-add/project-add.component';
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../service/project.service';
 import {
@@ -5,6 +7,7 @@ import {
   FormGroup,
   FormControl
 } from '@angular/forms';
+import { NzModalService, NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'sb-project-list',
@@ -31,7 +34,8 @@ export class ProjectListComponent implements OnInit {
     this.validateForm.reset();
   }
 
-  constructor(private fb: FormBuilder, private projectService: ProjectService) {
+  constructor(private fb: FormBuilder, private projectService: ProjectService,
+    private modalService: NzModalService, private message: NzMessageService) {
   }
 
   ngOnInit() {
@@ -54,4 +58,66 @@ export class ProjectListComponent implements OnInit {
       }
     );
   }
+
+  openAdd() {
+    const subscription = this.modalService.open({
+      title: '添加项目',
+      content: ProjectAddComponent,
+      onOk: () => {},
+      onCancel() {},
+      footer: false,
+      maskClosable: false,
+      width: 800,
+      componentParams: {}
+    });
+
+    subscription.subscribe(result => {
+      if (result == 'refresh') {
+        this.loadData();
+      }
+    });
+  }
+
+  openImport() {
+    const subscription = this.modalService.open({
+      title: '导入项目',
+      content: ProjectImportComponent,
+      onOk: () => {},
+      onCancel() {},
+      footer: false,
+      maskClosable: false,
+      componentParams: {},
+    });
+
+    subscription.subscribe(result => {
+      if (result == 'refresh') {
+        this.loadData();
+      }
+    });
+  }
+
+  copy(id) {
+    this.projectService.copy(id).subscribe(
+      ok => {
+        this.message.success('复制成功');
+        this.loadData();
+      },
+      err => {
+        this.message.warning('复制失败，请重试');
+      }
+    );
+  }
+
+  delete(id) {
+    this.projectService.delete(id).subscribe(
+      ok => {
+        this.message.success('删除成功');
+        this.loadData();
+      },
+      err => {
+        this.message.warning('删除失败，请重试');
+      }
+    );
+  }
+
 }

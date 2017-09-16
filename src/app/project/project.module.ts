@@ -11,6 +11,9 @@ import { ProjectMembersComponent } from './views/project-members/project-members
 import { ProjectDocumentsComponent } from './views/project-documents/project-documents.component';
 import { SendNoticeComponent } from './views/send-notice/send-notice.component';
 import { ProjectLogComponent } from './views/project-log/project-log.component';
+import { ProjectAddComponent } from './views/project-add/project-add.component';
+import { ProjectImportComponent } from './views/project-import/project-import.component';
+import { ProjectFormComponent } from './partial/project-form/project-form.component';
 
 @NgModule({
   imports: [
@@ -18,7 +21,9 @@ import { ProjectLogComponent } from './views/project-log/project-log.component';
     ProjectRoutingModule
   ],
   declarations: [ProjectListComponent, ProjectLayoutComponent, ProjectInfoComponent,
-    ProjectMembersComponent, ProjectDocumentsComponent, SendNoticeComponent, ProjectLogComponent],
-  providers: [ProjectService, ProjectDetailResolver]
+    ProjectMembersComponent, ProjectDocumentsComponent, SendNoticeComponent, ProjectLogComponent,
+    ProjectAddComponent, ProjectImportComponent, ProjectFormComponent],
+  providers: [ProjectService, ProjectDetailResolver],
+  entryComponents: [ProjectAddComponent, ProjectImportComponent]
 })
 export class ProjectModule { }

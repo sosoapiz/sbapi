@@ -1,3 +1,5 @@
+import { NzMessageService } from 'ng-zorro-antd';
+import { ProjectService } from './../../service/project.service';
 import { Project } from './../../entity/project';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -15,36 +17,27 @@ import {
 })
 export class ProjectInfoComponent implements OnInit {
   project: Project;
+  err;
 
-  validateForm: FormGroup;
-
-  _submitForm() {
-    for (const i in this.validateForm.controls) {
-      this.validateForm.controls[ i ].markAsDirty();
-    }
-  }
-
-  constructor(private router: Router, private route: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(private router: Router, private route: ActivatedRoute,
+    private projectService: ProjectService, private message: NzMessageService) { }
 
   ngOnInit() {
     this.route.data.subscribe((data: {project: Project}) => {
       this.project = data.project;
-      this.initForm();
     });
   }
 
-  initForm() {
-    this.validateForm = this.fb.group({
-      name              : [ this.project.name, [ Validators.required ] ],
-      code              : [ this.project.code, [ Validators.required ] ],
-      status            : [ this.project.status, null ],
-      description       : [ this.project.description, null ],
-    });
+  onSave(event) {
+    let data = event.data;
+    data.projId = this.project.projId;
+    this.projectService.update(data).subscribe(
+      proj => {
+        this.message.success('更新项目信息成功');
+      },
+      err => {
+        this.err = err;
+      }
+    );
   }
-
-  getFormControl(name) {
-    return this.validateForm.controls[ name ];
-  }
-
-  resetForm(e) {}
 }

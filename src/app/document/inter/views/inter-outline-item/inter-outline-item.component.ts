@@ -19,4 +19,9 @@ export class InterOutlineItemComponent implements OnInit {
   toggleExpanded() {
     this.expanded = !this.expanded;
   }
+
+  add(event: Event) {
+    event.preventDefault();
+    console.log('123');
+  }
 }

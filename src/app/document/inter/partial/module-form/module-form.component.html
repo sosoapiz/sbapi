@@ -19,13 +19,13 @@
 
   <div nz-row>
     <div nz-col [nzSpan]="16" [nzOffset]="4">
-      <button nz-button [nzType]="'primary'" [nzSize]="'large'">
+      <button nz-button type="button" [nzType]="'primary'" [nzSize]="'large'" [disabled]="!moduleForm.valid" (click)="_save($event)">
           <span>保存</span>
       </button>
-      <button nz-button [nzType]="'primary'" [nzSize]="'large'">
+      <button *ngIf="isCreate" nz-button type="button" [nzType]="'primary'" [nzSize]="'large'" [disabled]="!moduleForm.valid" (click)="_saveAndNext($event)">
           <span>保存并继续</span>
       </button>
-      <button nz-button [nzType]="'default'" [nzSize]="'large'">
+      <button nz-button type="button" [nzType]="'default'" [nzSize]="'large'" (click)="_cancel($event)">
           <span>取消</span>
       </button>
       

@@ -22,7 +22,6 @@ export class DocInfoComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data: { document: Document }) => {
       this.document = data.document;
-      console.log(data)
       this.initForm(this.document);
     });
   }
