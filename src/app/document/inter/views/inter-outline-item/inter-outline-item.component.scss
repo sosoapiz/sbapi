@@ -1,8 +1,25 @@
 .outline-item {
-    
+    font-size: 14px;
     cursor: pointer;
+
+    .actions {
+        display: none;
+        float: right;
+        width: 1.5rem;
+        text-align: center;
+    }
 
     &:hover {
         background-color: rgba(150, 150, 150, 0.3);
+
+        .actions{
+            background-color: rgba(150, 150, 150, 0.5);
+            display: block;
+            
+            a { 
+                color: #ffffff;
+            }
+        }
     }
+    
 }

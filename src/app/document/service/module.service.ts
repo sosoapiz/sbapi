@@ -1,7 +1,7 @@
 import { FormDataUtil } from './../../core/utils/form-data-util';
 import { Module } from './../entity/module';
 import { HttpAdaptor } from './../../core/http/http-adaptor';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -9,6 +9,8 @@ import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class ModuleService {
+    flushed: EventEmitter<any> = new EventEmitter();
+
     constructor(private httpAdaptor: HttpAdaptor) { }
 
     list(docId): Observable<Module[]> {
@@ -29,7 +31,7 @@ export class ModuleService {
         return this.httpAdaptor.post('/api/doc/module/update', formData);
     }
 
-    delete(id) {
-        return this.httpAdaptor.get('/api/doc/module/del', {params: {projId: id}});
+    delete(docId, moduleId) {
+        return this.httpAdaptor.get('/api/doc/module/del', {params: {docId: docId, moduleId: moduleId}});
     }
 }

@@ -28,8 +28,10 @@ export class ModuleFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    let entity = this.module || {};
+    this.initForm(this.module || {});
+  }
 
+  initForm(entity) {
     this.moduleForm = this.fb.group({
       id: [entity.id],
       name: [entity.name],

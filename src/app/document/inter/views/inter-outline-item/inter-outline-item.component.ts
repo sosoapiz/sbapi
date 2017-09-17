@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'sb-inter-outline-item',
@@ -8,20 +8,26 @@ import { Component, OnInit, Input } from '@angular/core';
 export class InterOutlineItemComponent implements OnInit {
   @Input() type: 'codeGroup' | 'code' | 'interGroup' | 'interGroupSub' | 'interGroupModule' | 'inter';
   @Input() label: string;
-
   @Input() expanded: boolean = false;
+
+  // string event name => 'refresh' | 'edit' | 'addModule' | 'addInter' | 'addCode' | 'delete'
+  @Output() action: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  toggleExpanded() {
+  toggleExpanded(event: Event) {
+    event.stopPropagation();
     this.expanded = !this.expanded;
   }
 
-  add(event: Event) {
-    event.preventDefault();
-    console.log('123');
+  _stopPropagation(event: Event) {
+    event.stopPropagation();
+  }
+
+  _action(name) {
+    this.action.emit(name);
   }
 }

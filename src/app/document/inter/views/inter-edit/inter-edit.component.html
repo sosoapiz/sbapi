@@ -1,3 +1,17 @@
-<p>
-  inter-edit works!
-</p>
+<nz-card [nzBordered]="false" [nzNoHovering]="true" [nzLoading]="!inter">
+    <ng-template #title>接口信息</ng-template>
+    <!-- <ng-template #extra></ng-template> -->
+    <ng-template #body *ngIf="inter">
+        <h3>基本信息</h3>
+        <sb-inter-form [inter]="inter" [docId]="docId" [moduleId]="moduleId" (save)="onSave($event)"></sb-inter-form>
+        
+        <div style="margin-top: 32px;"></div>
+        <h3>请求参数</h3>
+        <sb-inter-request [docId]="docId" [interId]="inter.interId"></sb-inter-request>
+
+        <div style="margin-top: 32px;"></div>
+        <h3>接口响应</h3>
+        <sb-inter-response [docId]="docId" [interId]="inter.interId"></sb-inter-response>
+
+    </ng-template>
+</nz-card>

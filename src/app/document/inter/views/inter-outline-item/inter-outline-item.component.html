@@ -1,10 +1,21 @@
 <!-- 'codeGroup' | 'code' | 'interGroup' | 'interGroupSub' | 'interGroupModule' | 'inter' -->
 <ng-container *ngIf="type=='codeGroup'">
-  <div class="outline-item" (click)="toggleExpanded()">
-      <i class="anticon anticon-right" *ngIf="!expanded" (click)="toggleExpanded()"></i>
-      <i class="anticon anticon-down" *ngIf="expanded" (click)="toggleExpanded()"></i>
+  <div class="outline-item" (click)="toggleExpanded($event)">
+      <i class="anticon anticon-right" *ngIf="!expanded" (click)="toggleExpanded($event)"></i>
+      <i class="anticon anticon-down" *ngIf="expanded" (click)="toggleExpanded($event)"></i>
       <i class="anticon anticon-exclamation-circle"></i>
       <span>{{label}}</span>
+      <span class="actions">
+        <nz-dropdown nzPlacement="bottomCenter">
+          <a class="ant-dropdown-link" nz-dropdown (click)="_stopPropagation($event)">
+            <i class="anticon anticon-ellipsis" style="font-size: 16px;"></i>
+          </a>
+          <ul nz-menu>
+            <li nz-menu-item (click)="_action('addCode')">新增返回码</li>
+            <li nz-menu-item >刷新</li>
+          </ul>
+        </nz-dropdown>
+      </span>
   </div>
 </ng-container>
 
@@ -12,37 +23,80 @@
   <div class="outline-item">
       <i class="anticon anticon-file-text"></i>
       <span>{{label}}</span>
+      <span class="actions">
+        <nz-dropdown nzPlacement="bottomCenter">
+          <a class="ant-dropdown-link" nz-dropdown (click)="_stopPropagation($event)">
+            <i class="anticon anticon-ellipsis" style="font-size: 16px;"></i>
+          </a>
+          <ul nz-menu>
+            <li nz-menu-item (click)="_action('edit')">编辑</li>
+            <li nz-menu-item (click)="_action('delete')">删除</li>
+          </ul>
+        </nz-dropdown>
+      </span>
   </div>
 </ng-container>
 
 <ng-container *ngIf="type=='interGroup'">
-  <div class="outline-item" (click)="toggleExpanded()">
-      <i class="anticon anticon-right" *ngIf="!expanded" (click)="toggleExpanded()"></i>
-      <i class="anticon anticon-down" *ngIf="expanded" (click)="toggleExpanded()"></i>
+  <div class="outline-item" (click)="toggleExpanded($event)">
+      <i class="anticon anticon-right" *ngIf="!expanded" (click)="toggleExpanded($event)"></i>
+      <i class="anticon anticon-down" *ngIf="expanded" (click)="toggleExpanded($event)"></i>
       <i class="anticon anticon-layout"></i>
       <span>{{label}}</span>
+      <span class="actions">
+        <nz-dropdown nzPlacement="bottomCenter">
+          <a class="ant-dropdown-link" nz-dropdown (click)="_stopPropagation($event)">
+            <i class="anticon anticon-ellipsis" style="font-size: 16px;"></i>
+          </a>
+          <ul nz-menu>
+            <li nz-menu-item (click)="_action('addModule')">新增模块</li>
+            <li nz-menu-item (click)="_action('addInter')">新增接口</li>
+            <li nz-menu-item (click)="_action('refresh')">刷新</li>
+          </ul>
+        </nz-dropdown>
+      </span>
   </div>
 </ng-container>
 
 <ng-container *ngIf="type=='interGroupSub'">
-  <div class="outline-item" (click)="toggleExpanded()">
-      <i class="anticon anticon-right" *ngIf="!expanded" (click)="toggleExpanded()"></i>
-      <i class="anticon anticon-down" *ngIf="expanded" (click)="toggleExpanded()"></i>
+  <div class="outline-item" (click)="toggleExpanded($event)">
+      <i class="anticon anticon-right" *ngIf="!expanded" (click)="toggleExpanded($event)"></i>
+      <i class="anticon anticon-down" *ngIf="expanded" (click)="toggleExpanded($event)"></i>
       <i class="anticon anticon-calendar" *ngIf="label!='未分组'"></i>
       <i class="anticon anticon-frown-o" *ngIf="label=='未分组'"></i>
       <span>{{label}}</span>
+      <span class="actions">
+        <nz-dropdown nzPlacement="bottomCenter">
+          <a class="ant-dropdown-link" nz-dropdown (click)="_stopPropagation($event)">
+            <i class="anticon anticon-ellipsis" style="font-size: 16px;"></i>
+          </a>
+          <ul nz-menu>
+            <li nz-menu-item (click)="_action('refresh')">刷新</li>
+          </ul>
+        </nz-dropdown>
+      </span>
   </div>
 </ng-container>
 
 <ng-container *ngIf="type=='interGroupModule'">
-  <div class="outline-item" (click)="toggleExpanded()">
-      <i class="anticon anticon-right" *ngIf="!expanded" (click)="toggleExpanded()"></i>
-      <i class="anticon anticon-down" *ngIf="expanded" (click)="toggleExpanded()"></i>
+  <div class="outline-item" (click)="toggleExpanded($event)">
+      <i class="anticon anticon-right" *ngIf="!expanded" (click)="toggleExpanded($event)"></i>
+      <i class="anticon anticon-down" *ngIf="expanded" (click)="toggleExpanded($event)"></i>
       <i class="anticon anticon-folder" *ngIf="!expanded"></i>
       <i class="anticon anticon-folder-open" *ngIf="expanded"></i>
       <span>{{label}}</span>
-      <span style="float: right;">
-        <a (click)="add($event)"><i class="anticon anticon-plus"></i></a>
+      <span class="actions">
+        <nz-dropdown nzPlacement="bottomCenter">
+          <a class="ant-dropdown-link" nz-dropdown (click)="_stopPropagation($event)">
+            <i class="anticon anticon-ellipsis" style="font-size: 16px;"></i>
+          </a>
+          <ul nz-menu>
+            <li nz-menu-item (click)="_action('addInter')">新增接口</li>
+            <li nz-menu-item (click)="_action('refresh')">刷新</li>
+            <li nz-menu-item (click)="_action('edit')">编辑</li>
+            <li nz-menu-item (click)="_action('delete')">删除</li>
+          </ul>
+        </nz-dropdown>
       </span>
   </div>
 </ng-container>
@@ -51,6 +105,18 @@
   <div class="outline-item">
       <i class="anticon anticon-file-text"></i>
       <span>{{label}}</span>
+      <span class="actions">
+        <nz-dropdown nzPlacement="bottomCenter">
+          <a class="ant-dropdown-link" nz-dropdown (click)="_stopPropagation($event)">
+            <i class="anticon anticon-ellipsis" style="font-size: 16px;"></i>
+          </a>
+          <ul nz-menu>
+            <li nz-menu-item (click)="_action('edit')">编辑</li>
+            <li nz-menu-item (click)="_action('refresh')">刷新</li>
+            <li nz-menu-item (click)="_action('delete')">删除</li>
+          </ul>
+        </nz-dropdown>
+      </span>
   </div>
 </ng-container>
 

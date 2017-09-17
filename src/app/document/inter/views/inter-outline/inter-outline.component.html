@@ -1,8 +1,12 @@
-<sb-inter-outline-item type="codeGroup" label="返回码"></sb-inter-outline-item>
+<sb-inter-outline-item type="codeGroup" label="返回码" (action)="onAction($event)"></sb-inter-outline-item>
 
-<sb-inter-outline-item type="interGroup" label="接口列表" [expanded]="true">
-  <sb-inter-outline-item type="interGroupSub" label="所有接口"></sb-inter-outline-item>
-  <sb-inter-outline-item type="interGroupSub" label="未分组"></sb-inter-outline-item>
+<sb-inter-outline-item type="interGroup" label="接口列表" [expanded]="true" (action)="onAction($event)">
+  <sb-inter-outline-item type="interGroupSub" [label]="'所有接口 [' + inters?.length + ']'" (action)="onAction($event)">
+      <sb-inter-outline-item *ngFor="let inter of inters" type="inter" [label]="inter.name" (click)="_editInter(inter.id)" (action)="onAction($event)"></sb-inter-outline-item>
+  </sb-inter-outline-item>
+  <sb-inter-outline-item type="interGroupSub" label="未分组" (action)="onAction($event)"></sb-inter-outline-item>
 
-  <sb-inter-outline-item *ngFor="let m of modules" type="interGroupModule" [label]="m.name"></sb-inter-outline-item>
+  <sb-inter-outline-item *ngFor="let m of modules" type="interGroupModule" [label]="m.name + ' [' + m.inters?.length + ']'" (action)="onModuleAction($event, m.id)">
+    <sb-inter-outline-item *ngFor="let inter of m.inters" type="inter" [label]="inter.name" (click)="_editInter(inter.id)" (action)="onInterAction($event, inter.id)"></sb-inter-outline-item>
+  </sb-inter-outline-item>
 </sb-inter-outline-item>

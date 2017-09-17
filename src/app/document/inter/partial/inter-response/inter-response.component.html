@@ -1,49 +1,95 @@
-<div nz-row [nzGutter]="8" style="padding: 8px 0; margin: 8px 0; border-bottom: 2px solid #eee; font-weight: 600;">
-    <div nz-col [nzSpan]="2">
-      <div>操作</div>  
-    </div>
-    <div nz-col [nzSpan]="3">
-      <div>名称</div>  
-    </div>
-    <div nz-col [nzSpan]="3">
-      <div>描述</div>  
-    </div>
-    <div nz-col [nzSpan]="3">
-      <div>类型</div>  
-    </div>
-    <div nz-col [nzSpan]="3">
-      <div>Mock设置</div>  
-    </div>
+<div nz-row [nzType]="'flex'" [nzGutter]="8" class="re-header">
+  <div nz-col style="width: 72px;">
+    <div>操作</div>
   </div>
-  
-  <div nz-row [nzGutter]="8" style="padding: 8px 0; margin: 8px 0; background-color: #efefff;">
-    <div nz-col [nzSpan]="2">
-      <button nz-button nzType="dashed"><i class="anticon anticon-swap"></i></button>
-      <button nz-button nzType="dashed"><i class="anticon anticon-close"></i></button>
-    </div>
-    <div nz-col [nzSpan]="3">
-      <nz-input nzPlaceHolder=""></nz-input>
-    </div>
-    <div nz-col [nzSpan]="3">
-      <nz-input nzPlaceHolder=""></nz-input>
-    </div>
+  <div nz-col [nzSpan]="3">
+    <div>响应码</div>
+  </div>
+  <div nz-col [nzSpan]="3">
+    <div>描述</div>
+  </div>
+  <div nz-col [nzSpan]="3">
+    <div>类型</div>
+  </div>
+  <div nz-col [nzSpan]="3">
+    <div>更多</div>
+  </div>
+</div>
 
-    <div nz-col [nzSpan]="3">
-      <nz-select style="width: 100%;" nzPlaceHolder="">
-        <nz-option 
-            [nzLabel]="'body'"
-            [nzValue]="'body'"
-            [nzDisabled]="false">
-        </nz-option>
-      </nz-select>
-    </div>
+<div nz-row [nzType]="'flex'" [nzGutter]="8" class="re-row" *ngFor="let resp of interRespes">
+  <div nz-col style="width: 72px;">
+    <button nz-button nzType="dashed"><i class="anticon anticon-swap"></i></button>
+    <button nz-button nzType="dashed" (click)="delete($event, resp.id)"><i class="anticon anticon-close"></i></button>
+  </div>
+  <div nz-col [nzSpan]="3">
+    <nz-input nzPlaceHolder="响应码" nzDisabled name="code" [(ngModel)]="resp.code"></nz-input>
+  </div>
+  <div nz-col [nzSpan]="3">
+    <nz-input nzPlaceHolder="描述" nzDisabled name="description" [(ngModel)]="resp.description"></nz-input>
+  </div>
 
-    <div nz-col [nzSpan]="3">
-      <button nz-button>Mock设置</button>
+  <div nz-col [nzSpan]="3">
+    <nz-select style="width: 100%;" nzPlaceHolder="类型" [nzDisabled]="true" name="type" [(ngModel)]="resp.type">
+      <nz-option *ngFor="let item of _typies" [nzLabel]="item.label" [nzValue]="item.value" [nzDisabled]="item.disabled">
+      </nz-option>
+    </nz-select>
+  </div>
+
+  <div nz-col>
+    <button nz-button nzType="primary" [nzGhost]="true" (click)="openEdit($event, resp)"><i class="anticon anticon-edit"></i> 编辑</button>
+    <button nz-button nzType="primary" [nzGhost]="true"><i class="anticon anticon-inbox"></i> Mock设置</button>
+  </div>
+</div>
+
+<div style="margin-top: 16px;">
+  <button nz-button nzType="primary" [nzGhost]="true" (click)="openAdd($event)"><i class="anticon anticon-plus"></i> 新增</button>
+  <!-- <button nz-button nzType="primary" [nzGhost]="true" (click)="save($event)"><i class="anticon anticon-save"></i> 保存</button>
+  <button nz-button nzType="primary" [nzGhost]="true" (click)="reload($event)"><i class="anticon anticon-reload"></i> 还原</button> -->
+  <button nz-button nzType="danger" [nzGhost]="true" (click)="clean($event)"><i class="anticon anticon-delete"></i> 清空</button>
+</div>
+
+<nz-modal [nzVisible]="!!respForm" [nzTitle]="'请求响应信息'" [nzContent]="modalContent" [nzFooter]="modalFooter" [nzWidth]="768" [nzMaskClosable]="false"
+  (nzOnCancel)="handleCancel($event)">
+  <ng-template #modalContent>
+    <form nz-form *ngIf="respForm" [formGroup]="respForm" [nzLayout]="'horizontal'">
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+          <label for="code" nz-form-item-required>响应码</label>
+        </div>
+        <div nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback [nzValidateStatus]="getFormControl('code')">
+          <nz-input formControlName="code" [nzSize]="'large'" [nzId]="'code'"></nz-input>
+          <div nz-form-explain *ngIf="getFormControl('code').dirty&&getFormControl('code').hasError('required')">请输入文档标题!</div>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+          <label for="description" nz-form-item-required>描述</label>
+        </div>
+        <div nz-form-control nz-col [nzSm]="14" [nzXs]="24">
+          <nz-input formControlName="description" [nzSize]="'large'" [nzId]="'description'"></nz-input>
+        </div>
+      </div>
+      <div nz-form-item nz-row>
+        <div nz-form-label nz-col [nzSm]="6" [nzXs]="24">
+          <label for="type" nz-form-item-required>类型</label>
+        </div>
+        <div nz-form-control nz-col [nzSm]="14" [nzXs]="24">
+          <nz-select formControlName="type" [nzSize]="'large'" nzPlaceHolder="类型">
+            <nz-option *ngFor="let item of _typies" [nzLabel]="item.label" [nzValue]="item.value" [nzDisabled]="item.disabled">
+            </nz-option>
+          </nz-select>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <template #modalFooter>
+      <div>
+      <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleOk($event)" [nzLoading]="isConfirmLoading">
+        <span>保 存</span>
+      </button>
+      <button nz-button [nzType]="'default'" [nzSize]="'large'" (click)="handleCancel($event)">
+        <span>取 消</span>
+      </button>
     </div>
-  </div>
-  
-  <div style="margin-top: 16px;">
-    <button nz-button nzType="primary"><i class="anticon anticon-plus"></i> 新增</button>
-    <button nz-button nzType="danger"><i class="anticon anticon-delete"></i> 清空</button>
-  </div>
+  </template>
+</nz-modal>

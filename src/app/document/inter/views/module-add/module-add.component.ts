@@ -26,6 +26,7 @@ export class ModuleAddComponent implements OnInit {
     data.docId = this.document.id;
     this.moduleService.add(data).subscribe(
       ok => {
+        this.moduleService.flushed.emit(ok);
         this.message.success('添加模块成功');
         // 刷新左侧树
       },

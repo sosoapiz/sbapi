@@ -11,11 +11,11 @@
 
   <div nz-form-item nz-row>
     <div nz-form-label nz-col [nzSm]="4" [nzXs]="24">
-      <label for="url" nz-form-item-required>请求路径</label>
+      <label for="path" nz-form-item-required>请求路径</label>
     </div>
-    <div nz-form-control nz-col [nzSm]="16" [nzXs]="24" nzHasFeedback [nzValidateStatus]="getFormControl('url')">
-      <nz-input [nzSize]="'large'" formControlName="url" [nzId]="'url'"></nz-input>
-      <div nz-form-explain *ngIf="getFormControl('url').dirty&&getFormControl('url').hasError('required')">请输入文档标题!</div>
+    <div nz-form-control nz-col [nzSm]="16" [nzXs]="24" nzHasFeedback [nzValidateStatus]="getFormControl('path')">
+      <nz-input [nzSize]="'large'" formControlName="path" [nzId]="'path'"></nz-input>
+      <div nz-form-explain *ngIf="getFormControl('path').dirty&&getFormControl('path').hasError('required')">请输入文档标题!</div>
     </div>
   </div>
   
@@ -23,24 +23,34 @@
     <div nz-form-label nz-col [nzSm]="4" [nzXs]="24">
       <label for="moduleId">所属模块</label>
     </div>
-    <div nz-form-control nz-col [nzSm]="6" [nzXs]="24" nzHasFeedback [nzValidateStatus]="getFormControl('moduleId')">
-      <nz-input [nzSize]="'large'" formControlName="moduleId" [nzId]="'moduleId'"></nz-input>
+    <div nz-form-control nz-col [nzSm]="6" [nzXs]="24" [nzValidateStatus]="getFormControl('moduleId')">
+      <nz-select formControlName="moduleId" [nzSize]="'large'" [nzPlaceHolder]="''" [nzAllowClear]="false" >
+        <nz-option 
+            *ngFor="let item of _modules" 
+            [nzLabel]="item.label"
+            [nzValue]="item.value"
+            [nzDisabled]="item.disabled">
+        </nz-option>
+      </nz-select>
     </div>
 
     <div nz-form-label nz-col [nzSm]="4" [nzXs]="24">
-      <label for="isPublished">是否发布</label>
+      <label for="deprecated">是否弃用</label>
     </div>
-    <div nz-form-control nz-col [nzSm]="6" [nzXs]="24" [nzValidateStatus]="getFormControl('isPublished')">
-      <nz-input [nzSize]="'large'" formControlName="isPublished" [nzId]="'isPublished'"></nz-input>
+    <div nz-form-control nz-col [nzSm]="6" [nzXs]="24" [nzValidateStatus]="getFormControl('deprecated')">
+      <nz-select formControlName="deprecated" [nzSize]="'large'" [nzPlaceHolder]="''" [nzAllowClear]="false" >
+          <nz-option nzLabel="是" [nzValue]="true"></nz-option>
+          <nz-option nzLabel="否" [nzValue]="false"></nz-option>
+      </nz-select>
     </div>
   </div>
 
   <div nz-form-item nz-row>
     <div nz-form-label nz-col [nzSm]="4" [nzXs]="24">
-      <label for="requestMethod">请求方式</label>
+      <label for="method">请求方式</label>
     </div>
-    <div nz-form-control nz-col [nzSm]="6" [nzXs]="24" [nzValidateStatus]="getFormControl('requestMethod')">
-      <nz-select formControlName="requestMethod" [nzSize]="'large'" [nzPlaceHolder]="''" [nzAllowClear]="true" >
+    <div nz-form-control nz-col [nzSm]="6" [nzXs]="24" [nzValidateStatus]="getFormControl('method')">
+      <nz-select formControlName="method" [nzSize]="'large'" [nzPlaceHolder]="''" [nzAllowClear]="false" >
           <nz-option 
               *ngFor="let item of _requestMethods" 
               [nzLabel]="item.label"
@@ -51,10 +61,10 @@
     </div>
 
     <div nz-form-label nz-col [nzSm]="4" [nzXs]="24">
-      <label for="requestProtocol">请求协议</label>
+      <label for="scheme">请求协议</label>
     </div>
-    <div nz-form-control nz-col [nzSm]="6" [nzXs]="24" [nzValidateStatus]="getFormControl('requestProtocol')">
-      <nz-select formControlName="requestProtocol" [nzSize]="'large'" [nzPlaceHolder]="''" [nzAllowClear]="true" >
+    <div nz-form-control nz-col [nzSm]="6" [nzXs]="24" [nzValidateStatus]="getFormControl('scheme')">
+      <nz-select formControlName="scheme" [nzSize]="'large'" [nzPlaceHolder]="''" [nzAllowClear]="false" >
         <nz-option 
             *ngFor="let item of _requestProtocols" 
             [nzLabel]="item.label"
@@ -67,10 +77,10 @@
 
   <div nz-form-item nz-row>
     <div nz-form-label nz-col [nzSm]="4" [nzXs]="24">
-      <label for="requestFormat">请求格式</label>
+      <label for="consume">请求格式</label>
     </div>
-    <div nz-form-control nz-col [nzSm]="6" [nzXs]="24" [nzValidateStatus]="getFormControl('requestFormat')">
-      <nz-select formControlName="requestFormat" [nzSize]="'large'" [nzPlaceHolder]="''" [nzAllowClear]="true" >
+    <div nz-form-control nz-col [nzSm]="6" [nzXs]="24" [nzValidateStatus]="getFormControl('consume')">
+      <nz-select formControlName="consume" [nzSize]="'large'" [nzPlaceHolder]="''" [nzAllowClear]="false" >
           <nz-option 
               *ngFor="let item of _requestFormats" 
               [nzLabel]="item.label"
@@ -81,10 +91,10 @@
     </div>
 
     <div nz-form-label nz-col [nzSm]="4" [nzXs]="24">
-      <label for="responseFormat">响应格式</label>
+      <label for="produce">响应格式</label>
     </div>
-    <div nz-form-control nz-col [nzSm]="6" [nzXs]="24" [nzValidateStatus]="getFormControl('responseFormat')">
-      <nz-select formControlName="responseFormat" [nzSize]="'large'" [nzPlaceHolder]="''" [nzAllowClear]="true" >
+    <div nz-form-control nz-col [nzSm]="6" [nzXs]="24" [nzValidateStatus]="getFormControl('produce')">
+      <nz-select formControlName="produce" [nzSize]="'large'" [nzPlaceHolder]="''" [nzAllowClear]="false" >
         <nz-option 
             *ngFor="let item of _responseFormats" 
             [nzLabel]="item.label"
@@ -95,12 +105,12 @@
     </div>
   </div>
 
-  <div nz-form-item nz-row>
+  <!-- <div nz-form-item nz-row>
     <div nz-form-label nz-col [nzSm]="4" [nzXs]="24">
       <label for="developmentStatus">开发状态</label>
     </div>
     <div nz-form-control nz-col [nzSm]="6" [nzXs]="24" [nzValidateStatus]="getFormControl('developmentStatus')">
-      <nz-select formControlName="developmentStatus" [nzSize]="'large'" [nzPlaceHolder]="''" [nzAllowClear]="true" >
+      <nz-select formControlName="developmentStatus" [nzSize]="'large'" [nzPlaceHolder]="''" [nzAllowClear]="false" >
           <nz-option 
               *ngFor="let item of _developmentStatus" 
               [nzLabel]="item.label"
@@ -116,9 +126,9 @@
     <div nz-form-control nz-col [nzSm]="6" [nzXs]="24" nzHasFeedback [nzValidateStatus]="getFormControl('principal')">
       <nz-input [nzSize]="'large'" formControlName="principal" [nzId]="'principal'"></nz-input>
     </div>
-  </div>
+  </div> -->
 
-  <div nz-form-item nz-row>
+  <!-- <div nz-form-item nz-row>
     <div nz-form-label nz-col [nzSm]="4" [nzXs]="24">
       <label for="tags">标签</label>
     </div>
@@ -132,20 +142,20 @@
     <div nz-form-control nz-col [nzSm]="6" [nzXs]="24" [nzValidateStatus]="getFormControl('code')">
       <nz-input [nzSize]="'large'" formControlName="code" [nzId]="'code'"></nz-input>
     </div>
-  </div>
+  </div> -->
 
   <div nz-form-item nz-row>
     <div nz-form-label nz-col [nzSpan]="4">
       <label for="description">文档说明</label>
     </div>
-    <div nz-form-control nz-col [nzSpan]="16" nzHasFeedback [nzValidateStatus]="getFormControl('description')">
+    <div nz-form-control nz-col [nzSpan]="16" [nzValidateStatus]="getFormControl('description')">
       <nz-input formControlName="description" nzType="textarea" nzRows="4" [nzAutosize]="autosize"></nz-input>
     </div>
   </div>
 
   <div nz-row>
     <div nz-col [nzSpan]="14" [nzOffset]="4">
-      <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="doClick()">
+      <button nz-button type="button" [nzType]="'primary'" [nzSize]="'large'" (click)="_save($event)">
           <span>保存</span>
       </button>
     </div>

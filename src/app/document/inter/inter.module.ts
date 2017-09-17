@@ -23,6 +23,9 @@ import { InterAddComponent } from './views/inter-add/inter-add.component';
 import { InterEditComponent } from './views/inter-edit/inter-edit.component';
 import { InterRequestComponent } from './partial/inter-request/inter-request.component';
 import { InterResponseComponent } from './partial/inter-response/inter-response.component';
+import { InterService } from '../service/inter.service';
+import { InterParamService } from '../service/inter-param.service';
+import { InterRespService } from '../service/inter-resp.service';
 
 @NgModule({
   imports: [
@@ -34,6 +37,7 @@ import { InterResponseComponent } from './partial/inter-response/inter-response.
     ModuleFormComponent, CodeFormComponent, InterFormComponent, ModuleAddComponent,
     ModuleEditComponent, CodeEditComponent, CodeAddComponent, InterAddComponent,
     InterEditComponent, InterRequestComponent, InterResponseComponent],
-  providers: [DocumentDetailResolver, DocumentService, ModuleService]
+  providers: [DocumentDetailResolver, DocumentService, ModuleService, InterService,
+    InterParamService, InterRespService]
 })
 export class InterModule { }
