@@ -1,0 +1,34 @@
+<nz-layout>
+  <nz-header>
+    <div nz-row [nzType]="'flex'">
+      <div class="logo">
+        <span *ngIf="isCollapsed">SB</span>
+        <span *ngIf="!isCollapsed">SB - API</span>
+      </div>
+      <sb-header [(isCollapsed)]="isCollapsed"></sb-header>
+    </div>
+  </nz-header>
+  <nz-layout style="padding: 16px;">
+    <nz-sider [nzWidth]="200" style="background:#fff">
+      <ul nz-menu [nzMode]="'inline'" style="height:100%">
+        <li nz-menu-item [routerLink]="['../swwager']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">SwwagerUI</li>
+        <li nz-menu-item [routerLink]="['../online']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">线上编辑</li>
+        <li nz-menu-item [routerLink]="['../offline']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">线下部署</li>
+        <li nz-menu-item [routerLink]="['../test']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">在线测试</li>
+        <li nz-menu-item [routerLink]="['../about']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">关于我们</li>
+
+        <li nz-submenu style="display: none;">
+          <span title><i class="anticon anticon-laptop"></i></span>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-content style="margin:0 16px;">
+      <nz-collapseset [nzBordered]="false">
+        <nz-collapse *ngFor="let article of articles; let index = index;" [nzTitle]=" index + '. ' + article.title" [ngStyle]="panelStyle">
+          <article>{{article.content}}</article>
+        </nz-collapse>
+      </nz-collapseset>
+    </nz-content>
+    <nz-footer style="text-align: center; display: none;">© 2015-2017 厦门三秋树网络科技有限公司 版权所有</nz-footer>
+  </nz-layout>
+</nz-layout>

@@ -11,22 +11,22 @@
       <li nz-menu-item [routerLink]="['members']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">
         <span><i class="anticon anticon-team"></i><span class="nav-text">项目成员</span></span></li>
 
-      <li nz-menu-item [routerLink]="['document/view/list']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">
+      <li nz-menu-item style="display: none;" [routerLink]="['document/view/list']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">
         <span><i class="anticon anticon-camera-o"></i><span class="nav-text">文档视图</span></span></li>
 
-      <li nz-menu-item [routerLink]="['sendNotice']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">
+      <li nz-menu-item style="display: none;" [routerLink]="['sendNotice']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">
         <span><i class="anticon anticon-mail"></i><span class="nav-text">变更通知</span></span></li>
 
-      <li nz-menu-item [routerLink]="['log/list']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">
+      <li nz-menu-item style="display: none;" [routerLink]="['log/list']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">
         <span><i class="anticon anticon-fork"></i><span class="nav-text">变更历史</span></span></li>
 
       <li nz-menu-item [routerLink]="['document', project.docId, 'inter']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">
         <span><i class="anticon anticon-api"></i><span class="nav-text">接口管理</span></span></li>
 
-      <li nz-menu-item [routerLink]="['document', project.docId, 'schema']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">
+      <li nz-menu-item style="display: none;" [routerLink]="['document', project.docId, 'schema']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">
         <span><i class="anticon anticon-calculator"></i><span class="nav-text">数据结构</span></span></li>
 
-      <li nz-menu-item [routerLink]="['role/list']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">
+      <li nz-menu-item style="display: none;" [routerLink]="['role/list']" routerLinkActive="ant-menu-item-selected" [routerLinkActiveOptions]="{exact: true}">
         <span><i class="anticon anticon-idcard"></i><span class="nav-text">项目角色</span></span></li>
 
       <li nz-submenu style="display: none;"> <!-- antd 的 bug， 不加这个的话菜单项的样式和 main-layout 对应不上 -->
@@ -48,25 +48,25 @@
         </div>
         <div nz-col [nzSpan]="16" style="text-align: right;">
           <button nz-button nzType="primary"><i class="anticon anticon-eye-o"></i> 预览</button>
-          <button nz-button nzType="primary"><i class="anticon anticon-share-alt"></i> 分享设置</button>
-          <button nz-button nzType="primary"><i class="anticon anticon-tool"></i> Mock设置</button>
-          <button nz-button nzType="primary"><i class="anticon anticon-fork"></i> 变更通知</button>
+          <button nz-button nzType="primary" disabled><i class="anticon anticon-share-alt"></i> 分享设置</button>
+          <button nz-button nzType="primary" disabled><i class="anticon anticon-tool"></i> Mock设置</button>
+          <button nz-button nzType="primary" disabled><i class="anticon anticon-fork"></i> 变更通知</button>
           <nz-dropdown nzPlacement="bottomRight">
-            <button nz-button nz-dropdown nzType="primary"><i class="anticon anticon-cloud-download"></i><span>下载</span> <i class="anticon anticon-down"></i></button>
+            <button nz-button nz-dropdown nzType="primary"><i class="anticon anticon-cloud-download"></i><span> 导出</span> <i class="anticon anticon-down"></i></button>
             <ul nz-menu>
               <li nz-menu-item>
-                <a>HTML</a>
+                <a href="/sosoapi-web/auth/apidoc/export.htm?docId={{project.docId}}&docFormat=html">HTML</a>
               </li>
               <li nz-menu-item>
-                <a>Word</a>
+                <a href="/sosoapi-web/auth/apidoc/export.htm?docId={{project.docId}}&docFormat=doc">Word</a>
               </li>
-              <li nz-menu-item>
+              <li nz-menu-item style="display: none;">
                 <a>PDF</a>
               </li>
               <li nz-menu-item>
-                <a>Swagger</a>
+                <a href="/sosoapi-web/auth/apidoc/export.htm?docId={{project.docId}}&docFormat=json">Swagger</a>
               </li>
-              <li nz-menu-item>
+              <li nz-menu-item style="display: none;">
                 <a>Postman</a>
               </li>
             </ul>

@@ -1,0 +1,59 @@
+nz-layout {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  nz-sider {
+    height: 100%;
+  }
+  nz-content {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+:host ::ng-deep .logo {
+  height: 32px;
+  background: #333;
+  border-radius: 6px;
+  margin: 16px;
+  text-align: center;
+  line-height: 32px;
+  color: #ffffff;
+  font-size: 18px;
+  overflow: hidden;
+  flex: 200px 0;
+}
+
+sb-header {
+  flex: 1 auto;
+}
+
+:host {
+  .ant-layout-header {
+    background: #ffffff;
+    padding: 0;
+  }
+}
+
+:host ::ng-deep .ant-collapse-borderless {
+    background-color:rgba(0,0,0,0);
+}
+
+// .ant-collapse > .ant-collapse-item > .ant-collapse-header .arrow:before
+:host ::ng-deep .ant-collapse > .ant-collapse-item > .ant-collapse-header{
+    font-size: 14px;
+    font-weight: bold;
+
+    &:hover, &:active {
+        background-color: #fefffe !important;
+    }
+
+    .arrow {
+        display: none;
+        
+        &:before {
+            display: none;
+        }
+    }
+}
