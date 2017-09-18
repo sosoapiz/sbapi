@@ -13,7 +13,7 @@ export class AuthService {
     constructor(private httpAdaptor: HttpAdaptor) { }
 
     login(username, passwd): Observable<UserInfo> {
-        let url = '/api/login';
+        let url = '/api/ldap/login';
         let formData = new FormData();
         formData.append('loginName', username);
         formData.append('passwd', passwd);
