@@ -82,7 +82,7 @@
       </div>
     </form>
   </ng-template>
-  <template #modalFooter>
+  <ng-template #modalFooter>
       <div>
       <button nz-button [nzType]="'primary'" [nzSize]="'large'" (click)="handleOk($event)" [nzLoading]="isConfirmLoading">
         <span>保 存</span>
@@ -91,5 +91,5 @@
         <span>取 消</span>
       </button>
     </div>
-  </template>
+  </ng-template>
 </nz-modal>
