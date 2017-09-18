@@ -47,7 +47,7 @@
           <h3 style="margin-top: 3px;">{{project?.name}}</h3>
         </div>
         <div nz-col [nzSpan]="16" style="text-align: right;">
-          <button nz-button nzType="primary"><i class="anticon anticon-eye-o"></i> 预览</button>
+          <a nz-button nzType="primary" href="/sosoapi-web/auth/apidoc/preview.htm?docId={{project.docId}}" target="_blank"><i class="anticon anticon-eye-o"></i> 预览</a>
           <button nz-button nzType="primary" disabled><i class="anticon anticon-share-alt"></i> 分享设置</button>
           <button nz-button nzType="primary" disabled><i class="anticon anticon-tool"></i> Mock设置</button>
           <button nz-button nzType="primary" disabled><i class="anticon anticon-fork"></i> 变更通知</button>

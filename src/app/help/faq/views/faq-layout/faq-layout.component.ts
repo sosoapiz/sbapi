@@ -9,6 +9,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class FaqLayoutComponent implements OnInit {
 
+  isCollapsed: false;
   articles: {title?: string, content?: string}[];
 
   panelStyle = {
