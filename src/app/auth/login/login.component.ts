@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     }
 
     // console.log(value['username'], value['password']);
-    this.authService.login(value['username'], value['password']).subscribe(
+    this.authService.login(value['username'], value['password'], value['remember']).subscribe(
       ok => {
         this.gotoHome();
       },

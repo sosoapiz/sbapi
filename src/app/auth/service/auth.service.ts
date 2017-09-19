@@ -12,11 +12,12 @@ export class AuthService {
 
     constructor(private httpAdaptor: HttpAdaptor) { }
 
-    login(username, passwd): Observable<UserInfo> {
+    login(username, passwd, autoLogin?): Observable<UserInfo> {
         let url = '/api/ldap/login';
         let formData = new FormData();
         formData.append('loginName', username);
         formData.append('passwd', passwd);
+        formData.append('autoLogin', autoLogin);
         return this.httpAdaptor.post(url, formData).map((userInfo) => {
             this.userInfo = userInfo;
             return userInfo;
