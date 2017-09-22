@@ -28,20 +28,20 @@
     <form nz-form [formGroup]="addForm">
       <div nz-form-item nz-row>
         <div nz-form-label nz-col [nzSpan]="6">
-          <label for="username">用户</label>
+          <label for="userIds">用户</label>
         </div>
         <div nz-form-control nz-col [nzSpan]="14" [nzValidateStatus]="success">
           <nz-select
-            formControlName="username"
+            formControlName="userIds"
             nzKeepUnListOptions
             [nzMode]="'multiple'"
             [nzPlaceHolder]="'请选择关键字'"
             (nzSearchChange)="searchChange($event)"
-            [nzNotFoundContent]="'无法找到'">
+            [nzNotFoundContent]="'没有该用户或已是项目成员'">
             <nz-option
-              *ngFor="let option of searchOptions"
-              [nzLabel]="option[0]"
-              [nzValue]="option[0]">
+              *ngFor="let option of _searchOptions"
+              [nzLabel]="option['nickName'] + ' (' + option['email'] + ')'"
+              [nzValue]="option['userId']">
             </nz-option>
           </nz-select>
           <div nz-form-explain>搜索已存在的用户或使用电子邮箱地址邀请新用户。</div>
@@ -54,10 +54,7 @@
         </div>
         <div nz-form-control nz-col [nzSpan]="14" [nzValidateStatus]="success">
           <nz-select formControlName="role" [nzAllowClear]="false" >
-              <nz-option nzLabel="访客" nzValue="GUST"></nz-option>
-              <nz-option nzLabel="报告者" nzValue="REPORTER"></nz-option>
-              <nz-option nzLabel="开发人员" nzValue="DEVELOPER"></nz-option>
-              <nz-option nzLabel="主程序员" nzValue="MAIN_DEVELOPER"></nz-option>
+              <nz-option *ngFor="let option of _roles" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
           </nz-select>
           <div nz-form-explain>关于角色权限的更多内容请参阅 <a>这里</a></div>
         </div>
@@ -65,7 +62,7 @@
 
       <div nz-row>
         <div nz-col [nzSpan]="16" [nzOffset]="6">
-          <button nz-button nzType="primary">
+          <button nz-button type="button" nzType="primary" (click)="addMember($event)">
               <span>添加用户到项目</span>
           </button>
           
@@ -81,19 +78,24 @@
     <div style="margin-bottom: 12px;">可以访问此项目的用户全部显示在下面。 关于项目权限的更多内容请参阅 <a>这里</a></div>
 
     <div style="border: 1px solid #eeeeee;">
-      <nz-collapseset [nzBordered]="false">
-        <nz-collapse *ngFor="let panel of panels" [nzTitle]="panel.name" [nzActive]="panel.active">
-          <nz-select style="width: 120px;" nzPlaceHolder="选择角色" [nzAllowClear]="false" >
-            <nz-option nzLabel="访客"></nz-option>
-            <nz-option nzLabel="报告者" nzValue="REPORTER"></nz-option>
-            <nz-option nzLabel="开发人员" nzValue="DEVELOPER"></nz-option>
-            <nz-option nzLabel="主程序员" nzValue="MAIN_DEVELOPER"></nz-option>
-          </nz-select>
-          <button nz-button nzType="primary">
-            <span>保存</span>
+      <div class="member-item" *ngFor="let mem of members">
+        <div class="name">
+          {{mem.nickName}}
+          <span style="color: #cccccc;">{{mem.email}}</span>
+        </div>
+        <div class="actions">
+          <span style="font-weight: bold; margin-right: 12px;">{{getRoleDisplayName(mem.role)}}</span>
+          
+          <button nz-button type="button" [nzType]="'default'" [nzSize]="'small'">
+            <i class="anticon anticon-edit"></i>
+            <span>修改</span>
           </button>
-        </nz-collapse>
-      </nz-collapseset>
+          <button nz-button type="button" [nzType]="'danger'" [nzSize]="'small'" (click)="delete(mem)">
+            <i class="anticon anticon-close"></i>
+            <span>删除</span>
+          </button>
+        </div>
+      </div>
     </div>
   </ng-template>
 </nz-card>

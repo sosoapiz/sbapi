@@ -1,3 +1,4 @@
+import { ProjectMemberService } from './service/project-member.service';
 import { ProjectDetailResolver } from './service/project-detail-resolver.service';
 import { ProjectService } from './service/project.service';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,7 @@ import { ProjectLogComponent } from './views/project-log/project-log.component';
 import { ProjectAddComponent } from './views/project-add/project-add.component';
 import { ProjectImportComponent } from './views/project-import/project-import.component';
 import { ProjectFormComponent } from './partial/project-form/project-form.component';
+import { ProjectMemberItemComponent } from './partial/project-member-item/project-member-item.component';
 
 @NgModule({
   imports: [
@@ -22,8 +24,8 @@ import { ProjectFormComponent } from './partial/project-form/project-form.compon
   ],
   declarations: [ProjectListComponent, ProjectLayoutComponent, ProjectInfoComponent,
     ProjectMembersComponent, ProjectDocumentsComponent, SendNoticeComponent, ProjectLogComponent,
-    ProjectAddComponent, ProjectImportComponent, ProjectFormComponent],
-  providers: [ProjectService, ProjectDetailResolver],
+    ProjectAddComponent, ProjectImportComponent, ProjectFormComponent, ProjectMemberItemComponent],
+  providers: [ProjectService, ProjectDetailResolver, ProjectMemberService],
   entryComponents: [ProjectAddComponent, ProjectImportComponent]
 })
 export class ProjectModule { }
